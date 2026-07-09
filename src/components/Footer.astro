@@ -1,0 +1,77 @@
+---
+import Logo from './Logo.astro';
+import { site, whatsappLink } from '../data/site';
+import { categorias } from '../data/categories';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="relative mt-24 bg-espresso text-crema">
+  <div class="texture-slats absolute inset-x-0 top-0 h-1.5 opacity-40"></div>
+  <div class="container-max grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div>
+      <Logo variant="claro" />
+      <p class="mt-5 max-w-xs text-sm leading-relaxed text-crema/70">
+        {site.descripcion}
+      </p>
+      <a
+        href={whatsappLink('Hola Madera Design, quisiera una cotización.')}
+        target="_blank"
+        rel="noopener"
+        class="btn-primary mt-6"
+      >
+        Cotizar por WhatsApp
+      </a>
+    </div>
+
+    <div>
+      <h3 class="eyebrow mb-4">Catálogo</h3>
+      <ul class="space-y-2.5 text-sm">
+        {
+          categorias.map((c) => (
+            <li>
+              <a
+                href={`/catalogo/${c.slug}`}
+                class="link-underline text-crema/80 hover:text-oro-claro"
+              >
+                {c.nombre}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="eyebrow mb-4">Contacto</h3>
+      <ul class="space-y-2.5 text-sm text-crema/80">
+        <li>{site.horario}</li>
+        <li>{site.direccion}</li>
+        <li>
+          <a href={`mailto:${site.email}`} class="link-underline hover:text-oro-claro">
+            {site.email}
+          </a>
+        </li>
+        <li>
+          <a
+            href={site.instagram}
+            target="_blank"
+            rel="noopener"
+            class="link-underline hover:text-oro-claro"
+          >
+            Instagram {site.instagramHandle}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-crema/10">
+    <div
+      class="container-max flex flex-col items-center justify-between gap-2 py-6 text-xs text-crema/50 sm:flex-row"
+    >
+      <p>© {year} {site.nombre}. Todos los derechos reservados.</p>
+      <p>{site.eslogan}</p>
+    </div>
+  </div>
+</footer>

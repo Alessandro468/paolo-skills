@@ -1,0 +1,89 @@
+---
+import { whatsappLink } from '../data/site';
+---
+
+<section class="relative overflow-hidden bg-espresso text-hueso">
+  <!-- Fondo: bloque chocolate con textura firma de listones -->
+  <div class="texture-slats absolute inset-0 opacity-30"></div>
+  <div
+    class="absolute inset-0"
+    style="background:radial-gradient(1200px 600px at 78% -10%, rgba(176,141,79,0.22), transparent 60%)"
+  >
+  </div>
+
+  <div class="container-max relative grid items-center gap-12 py-20 md:grid-cols-[1.05fr_0.95fr] md:py-28">
+    <!-- Columna de texto (la tesis) -->
+    <div>
+      <p class="eyebrow mb-5">Muebles a la medida · Venezuela</p>
+      <h1 class="font-display text-5xl font-semibold leading-[1.05] sm:text-6xl md:text-7xl">
+        Madera<br />
+        <span class="italic text-oro-claro">y Estilo</span>
+      </h1>
+      <p class="mt-6 max-w-md text-lg leading-relaxed text-crema/80">
+        Diseños exclusivos y a la medida, elaborados con materiales importados.
+        Transformamos tu espacio en piezas que reflejan la personalidad de quien las habita.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <a
+          href={whatsappLink('Hola Madera Design, quisiera una cotización a la medida.')}
+          target="_blank"
+          rel="noopener"
+          class="btn-primary"
+        >
+          Cotizar mi proyecto
+        </a>
+        <a href="/catalogo" class="btn-outline text-hueso">Ver catálogo</a>
+      </div>
+
+      <!-- Prueba social -->
+      <div class="mt-12 flex items-center gap-8 border-t border-crema/10 pt-6">
+        <div>
+          <p class="font-display text-3xl font-semibold text-oro-claro">+10 mil</p>
+          <p class="text-xs uppercase tracking-wide text-crema/60">Seguidores</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl font-semibold text-oro-claro">A la medida</p>
+          <p class="text-xs uppercase tracking-wide text-crema/60">Cada proyecto</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl font-semibold text-oro-claro">Importados</p>
+          <p class="text-xs uppercase tracking-wide text-crema/60">Materiales</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna visual: composición de paneles tipo vitrina iluminada -->
+    <div class="relative hidden md:block">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-4">
+          <div
+            class="texture-slats aspect-[3/4] rounded-sm border border-oro/20 bg-cacao/40 shadow-card"
+          >
+          </div>
+          <div
+            class="aspect-square rounded-sm border border-oro/20 shadow-card"
+            style="background:linear-gradient(135deg, rgba(176,141,79,0.35), rgba(46,33,26,0.9))"
+          >
+          </div>
+        </div>
+        <div class="space-y-4 pt-10">
+          <div
+            class="aspect-square rounded-sm border border-oro/20 shadow-card"
+            style="background:linear-gradient(135deg, rgba(107,74,50,0.6), rgba(26,21,18,0.95))"
+          >
+          </div>
+          <div
+            class="texture-slats aspect-[3/4] rounded-sm border border-oro/20 bg-chocolate shadow-card"
+          >
+          </div>
+        </div>
+      </div>
+      <!-- Sello M/D flotante -->
+      <div
+        class="absolute -left-6 top-1/2 flex h-24 w-24 -translate-y-1/2 items-center justify-center rounded-full border border-oro/40 bg-espresso/90 backdrop-blur"
+      >
+        <span class="font-display text-3xl font-semibold text-oro-claro">M/D</span>
+      </div>
+    </div>
+  </div>
+</section>

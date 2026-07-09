@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+import { whatsappLink } from '../data/site';
+
+const valores = [
+  { titulo: 'Exclusividad', texto: 'Diseños únicos, pensados solo para ti y tu espacio.' },
+  { titulo: 'Calidez', texto: 'La madera como material noble que da vida y confort al hogar.' },
+  { titulo: 'Detalle', texto: 'Acabados cuidados en cada unión, herraje y superficie.' },
+  { titulo: 'Compromiso', texto: 'Acompañamos el proyecto del boceto a la instalación final.' },
+];
+---
+
+<BaseLayout
+  title="Nosotros"
+  description="Conoce Madera Design: diseños exclusivos y a la medida, con materiales importados y fabricación propia."
+>
+  <!-- Intro -->
+  <section class="relative overflow-hidden bg-espresso py-16 text-hueso md:py-24">
+    <div class="texture-slats absolute inset-0 opacity-20"></div>
+    <div class="container-max relative grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+      <div>
+        <p class="eyebrow mb-4">Nosotros</p>
+        <h1 class="font-display text-4xl font-semibold leading-tight sm:text-5xl md:text-6xl">
+          Madera y estilo,<br />hechos a tu medida
+        </h1>
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-crema/80">
+          En Madera Design elaboramos muebles con diseños exclusivos y materiales
+          importados. Nuestro trabajo nace de una idea simple: los espacios deben
+          reflejar la personalidad de quienes los habitan.
+        </p>
+      </div>
+      <div class="relative">
+        <PlaceholderImage
+          alt="Taller de Madera Design"
+          label="Nuestro taller"
+          ratio="4 / 5"
+          class="rounded-sm border border-oro/20 shadow-card"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Filosofía -->
+  <section class="py-20 md:py-28">
+    <div class="container-max grid gap-14 md:grid-cols-2 md:items-center">
+      <PlaceholderImage
+        alt="Detalle de acabado en madera"
+        label="Diseño clásico"
+        ratio="4 / 3"
+        class="rounded-sm shadow-card"
+      />
+      <div>
+        <SectionHeading eyebrow="Nuestra filosofía" title="La personalidad de nuestros clientes" />
+        <p class="mt-6 leading-relaxed text-carbon/75">
+          Cada proyecto empieza escuchando. Entendemos cómo vives, qué te gusta y
+          cómo usas cada rincón, para diseñar piezas que resuelvan tu día a día sin
+          renunciar a la elegancia.
+        </p>
+        <p class="mt-4 leading-relaxed text-carbon/75">
+          Combinamos técnica y materiales importados para lograr muebles duraderos,
+          funcionales y con un acabado que se siente. Diseño clásico, calidez y
+          exclusividad en cada entrega.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section class="bg-crema py-20 md:py-24">
+    <div class="container-max">
+      <SectionHeading eyebrow="Lo que nos define" title="Nuestros valores" align="center" />
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          valores.map((v, i) => (
+            <div class="rounded-sm border border-carbon/10 bg-hueso p-7 shadow-soft">
+              <span class="font-display text-4xl font-semibold text-oro/50">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="mt-3 font-display text-xl font-semibold text-carbon">{v.titulo}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-carbon/70">{v.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="container-max py-20 text-center md:py-24">
+    <SectionHeading eyebrow="Trabajemos juntos" title="Tu próximo mueble empieza con una conversación" align="center" />
+    <a
+      href={whatsappLink('Hola Madera Design, me gustaría conocer más sobre ustedes y cotizar un proyecto.')}
+      target="_blank"
+      rel="noopener"
+      class="btn-dark mt-8"
+    >
+      Escríbenos por WhatsApp
+    </a>
+  </section>
+</BaseLayout>

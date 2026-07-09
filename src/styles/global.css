@@ -1,0 +1,113 @@
+/* Fuentes auto-alojadas (sin llamadas externas) */
+@import '@fontsource/cormorant/400.css';
+@import '@fontsource/cormorant/500.css';
+@import '@fontsource/cormorant/600.css';
+@import '@fontsource/cormorant/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/marcellus/400.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-espresso: #2e211a;
+    --color-chocolate: #4a3524;
+    --color-cacao: #6b4a32;
+    --color-carbon: #1a1512;
+    --color-arena: #d9c7b2;
+    --color-crema: #f3ece3;
+    --color-hueso: #fbf7f1;
+    --color-oro: #b08d4f;
+    --color-oro-claro: #c9a96a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-hueso text-carbon font-sans antialiased;
+  }
+
+  ::selection {
+    background: var(--color-oro);
+    color: var(--color-hueso);
+  }
+
+  /* Foco visible y consistente para accesibilidad */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-oro);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .container-max {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8;
+  }
+
+  /* Ojal / eyebrow: pequeña etiqueta en versalitas dorada */
+  .eyebrow {
+    @apply font-sans text-xs font-medium uppercase tracking-eyebrow text-oro;
+  }
+
+  /* Filete dorado: divisor firma de la marca */
+  .rule-gold {
+    @apply h-px w-16 bg-oro/70;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3
+      font-sans text-sm font-medium tracking-wide transition
+      duration-200 ease-out focus-visible:outline-none;
+  }
+  .btn-primary {
+    @apply btn bg-oro text-carbon hover:bg-oro-claro;
+  }
+  .btn-dark {
+    @apply btn bg-chocolate text-hueso hover:bg-cacao;
+  }
+  .btn-outline {
+    @apply btn border border-current text-current hover:bg-oro hover:text-carbon hover:border-oro;
+  }
+
+  /* Enlace con subrayado dorado animado */
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 h-px w-0 bg-oro transition-all duration-300;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  /* Textura firma: paneles de listones de madera verticales */
+  .texture-slats {
+    background-image: theme('backgroundImage.slats');
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

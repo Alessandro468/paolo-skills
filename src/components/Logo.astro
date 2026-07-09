@@ -1,0 +1,54 @@
+---
+// Logo monograma M/D — recreación fiel a la marca (placeholder editable).
+// Reemplázalo por el archivo oficial en /public/images/logo.svg si lo prefieres.
+interface Props {
+  variant?: 'oro' | 'claro' | 'oscuro';
+  showWordmark?: boolean;
+  class?: string;
+}
+const { variant = 'oro', showWordmark = true, class: cls = '' } = Astro.props;
+
+const tone =
+  variant === 'claro' ? '#FBF7F1' : variant === 'oscuro' ? '#2E211A' : '#B08D4F';
+---
+
+<span class={`inline-flex items-center gap-3 ${cls}`} aria-label="Madera Design">
+  <svg
+    width="40"
+    height="40"
+    viewBox="0 0 100 100"
+    role="img"
+    aria-hidden="true"
+    class="shrink-0"
+  >
+    <circle cx="50" cy="50" r="47" fill="none" stroke={tone} stroke-width="1.5" />
+    <text
+      x="50"
+      y="58"
+      text-anchor="middle"
+      font-family="Cormorant, Georgia, serif"
+      font-size="42"
+      font-weight="600"
+      fill={tone}
+      letter-spacing="1"
+    >M/D</text>
+  </svg>
+  {
+    showWordmark && (
+      <span class="flex flex-col leading-none">
+        <span
+          class="font-marca text-lg tracking-[0.18em]"
+          style={`color:${tone}`}
+        >
+          MADERA DESIGN
+        </span>
+        <span
+          class="font-sans text-[0.6rem] tracking-[0.34em] opacity-70"
+          style={`color:${tone}`}
+        >
+          MADERA Y ESTILO
+        </span>
+      </span>
+    )
+  }
+</span>

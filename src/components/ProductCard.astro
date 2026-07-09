@@ -1,0 +1,46 @@
+---
+import PlaceholderImage from './PlaceholderImage.astro';
+import { whatsappLink } from '../data/site';
+import type { Producto } from '../data/catalog';
+
+interface Props {
+  producto: Producto;
+}
+const { producto } = Astro.props;
+const mensaje = `Hola Madera Design, me interesa el producto "${producto.nombre}". ¿Me pueden dar más información y una cotización?`;
+---
+
+<article
+  class="group flex flex-col overflow-hidden rounded-sm border border-carbon/10 bg-hueso shadow-soft transition-shadow hover:shadow-card"
+>
+  <div class="overflow-hidden">
+    <PlaceholderImage
+      src={producto.imagen}
+      alt={producto.nombre}
+      label={producto.nombre}
+      ratio="4 / 3"
+      class="transition-transform duration-700 ease-out group-hover:scale-105"
+    />
+  </div>
+  <div class="flex flex-1 flex-col p-6">
+    <h3 class="font-display text-xl font-semibold text-carbon">{producto.nombre}</h3>
+    <p class="mt-2 flex-1 text-sm leading-relaxed text-carbon/70">
+      {producto.descripcion}
+    </p>
+    {
+      producto.material && (
+        <p class="mt-3 text-xs uppercase tracking-wide text-cacao">
+          {producto.material}
+        </p>
+      )
+    }
+    <a
+      href={whatsappLink(mensaje)}
+      target="_blank"
+      rel="noopener"
+      class="btn-outline mt-5 w-full text-cacao"
+    >
+      Cotizar por WhatsApp
+    </a>
+  </div>
+</article>

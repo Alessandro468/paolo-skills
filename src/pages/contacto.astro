@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site, whatsappLink } from '../data/site';
+
+const datos = [
+  {
+    label: 'WhatsApp',
+    valor: 'Escríbenos directo',
+    href: whatsappLink('Hola Madera Design, quisiera una cotización.'),
+    icon: 'M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Z',
+  },
+  {
+    label: 'Correo',
+    valor: site.email,
+    href: `mailto:${site.email}`,
+    icon: 'M4 6h16v12H4V6Zm2 2 6 4 6-4',
+  },
+  {
+    label: 'Instagram',
+    valor: site.instagramHandle,
+    href: site.instagram,
+    icon: 'M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5-1h.01',
+  },
+];
+---
+
+<BaseLayout
+  title="Contacto"
+  description="Contacta a Madera Design para cotizar tu mueble a la medida por WhatsApp, correo o formulario."
+>
+  <section class="relative overflow-hidden bg-espresso py-16 text-hueso md:py-20">
+    <div class="texture-slats absolute inset-0 opacity-20"></div>
+    <div class="container-max relative">
+      <p class="eyebrow mb-3">Contacto</p>
+      <h1 class="font-display text-4xl font-semibold sm:text-5xl">Cotiza tu proyecto</h1>
+      <p class="mt-4 max-w-xl text-crema/75">
+        Cuéntanos qué tienes en mente. Te asesoramos sin compromiso y te enviamos
+        una propuesta a la medida.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24">
+    <div class="container-max grid gap-12 lg:grid-cols-[1.3fr_0.7fr]">
+      <!-- Formulario -->
+      <div class="rounded-sm border border-carbon/10 bg-crema p-6 shadow-soft sm:p-8">
+        <h2 class="font-display text-2xl font-semibold text-carbon">Solicita tu cotización</h2>
+        <p class="mt-2 mb-6 text-sm text-carbon/70">
+          Completa el formulario o envíanos los datos directo por WhatsApp.
+        </p>
+        <ContactForm />
+      </div>
+
+      <!-- Datos de contacto -->
+      <aside class="space-y-4">
+        {
+          datos.map((d) => (
+            <a
+              href={d.href}
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-4 rounded-sm border border-carbon/10 bg-hueso p-5 shadow-soft transition-colors hover:border-oro"
+            >
+              <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-espresso">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A96A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d={d.icon} />
+                </svg>
+              </span>
+              <span>
+                <span class="block text-xs uppercase tracking-wide text-cacao">{d.label}</span>
+                <span class="block font-medium text-carbon">{d.valor}</span>
+              </span>
+            </a>
+          ))
+        }
+
+        <div class="rounded-sm border border-carbon/10 bg-hueso p-5 shadow-soft">
+          <span class="block text-xs uppercase tracking-wide text-cacao">Horario</span>
+          <p class="mt-1 text-sm text-carbon/80">{site.horario}</p>
+        </div>
+        <div class="rounded-sm border border-carbon/10 bg-hueso p-5 shadow-soft">
+          <span class="block text-xs uppercase tracking-wide text-cacao">Ubicación</span>
+          <p class="mt-1 text-sm text-carbon/80">{site.direccion}</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,55 @@
+---
+// Imagen de producto/categoría. Si `src` está vacío, muestra un placeholder
+// con textura de listones de madera + etiqueta, para que el layout se vea
+// completo sin fotos reales.
+interface Props {
+  src?: string;
+  alt: string;
+  label?: string;
+  ratio?: string; // p.ej. '4 / 3', '3 / 4', '16 / 9'
+  class?: string;
+}
+const { src, alt, label, ratio = '4 / 3', class: cls = '' } = Astro.props;
+---
+
+{
+  src ? (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class={`h-full w-full object-cover ${cls}`}
+      style={`aspect-ratio:${ratio}`}
+    />
+  ) : (
+    <div
+      class={`relative flex items-center justify-center overflow-hidden bg-chocolate text-hueso ${cls}`}
+      style={`aspect-ratio:${ratio}`}
+      role="img"
+      aria-label={alt}
+    >
+      <div class="texture-slats absolute inset-0 opacity-60"></div>
+      <div
+        class="absolute inset-0"
+        style="background:linear-gradient(135deg, rgba(107,74,50,0.55), rgba(46,33,26,0.85))"
+      >
+      </div>
+      <div class="relative flex flex-col items-center gap-2 px-4 text-center">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M3 16.5 9 10l4.5 4.5L17 11l4 4.5M3 20h18"
+            stroke="#C9A96A"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="8" cy="7" r="1.6" stroke="#C9A96A" stroke-width="1.4" />
+        </svg>
+        <span class="font-sans text-[0.62rem] uppercase tracking-eyebrow text-oro-claro">
+          {label ?? 'Foto próximamente'}
+        </span>
+      </div>
+    </div>
+  )
+}

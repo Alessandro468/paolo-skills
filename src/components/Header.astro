@@ -1,0 +1,124 @@
+---
+import Logo from './Logo.astro';
+import { site, whatsappLink } from '../data/site';
+
+const nav = [
+  { href: '/', label: 'Inicio' },
+  { href: '/catalogo', label: 'Catálogo' },
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/contacto', label: 'Contacto' },
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-40 border-b border-oro/15 bg-hueso/85 backdrop-blur-md transition-shadow"
+>
+  <div class="container-max flex h-20 items-center justify-between">
+    <a href="/" class="shrink-0" aria-label="Ir al inicio — Madera Design">
+      <Logo variant="oro" />
+    </a>
+
+    <nav class="hidden md:block" aria-label="Principal">
+      <ul class="flex items-center gap-9">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'link-underline font-sans text-sm tracking-wide transition-colors',
+                  isActive(item.href)
+                    ? 'text-oro'
+                    : 'text-carbon/80 hover:text-carbon',
+                ]}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="hidden md:block">
+      <a
+        href={whatsappLink('Hola Madera Design, quisiera una cotización.')}
+        target="_blank"
+        rel="noopener"
+        class="btn-primary"
+      >
+        Cotizar por WhatsApp
+      </a>
+    </div>
+
+    <!-- Botón menú móvil -->
+    <button
+      id="menu-toggle"
+      class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-sm text-carbon"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-oro/15 bg-hueso"
+  >
+    <nav class="container-max py-4" aria-label="Móvil">
+      <ul class="flex flex-col divide-y divide-oro/10">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'block py-3 font-sans text-base',
+                  isActive(item.href) ? 'text-oro' : 'text-carbon',
+                ]}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a
+        href={whatsappLink('Hola Madera Design, quisiera una cotización.')}
+        target="_blank"
+        rel="noopener"
+        class="btn-primary mt-4 w-full"
+      >
+        Cotizar por WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  // Sombra sutil del header al hacer scroll
+  const header = document.getElementById('site-header');
+  const onScroll = () => header?.classList.toggle('shadow-soft', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

@@ -1,0 +1,45 @@
+---
+import PlaceholderImage from './PlaceholderImage.astro';
+import type { Categoria } from '../data/categories';
+
+interface Props {
+  categoria: Categoria;
+  index?: number;
+}
+const { categoria, index = 0 } = Astro.props;
+const num = String(index + 1).padStart(2, '0');
+---
+
+<a
+  href={`/catalogo/${categoria.slug}`}
+  class="group relative block overflow-hidden rounded-sm bg-carbon shadow-card"
+>
+  <PlaceholderImage
+    src={categoria.imagen}
+    alt={`${categoria.nombre} — ${categoria.tituloCorto}`}
+    label={categoria.nombre}
+    ratio="3 / 4"
+    class="transition-transform duration-700 ease-out group-hover:scale-105"
+  />
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background:linear-gradient(to top, rgba(26,21,18,0.92) 8%, rgba(26,21,18,0.25) 45%, transparent 70%)"
+  >
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 p-6">
+    <span class="font-marca text-sm text-oro-claro">{num}</span>
+    <h3 class="mt-1 font-display text-2xl font-semibold text-hueso">
+      {categoria.nombre}
+    </h3>
+    <p class="mt-1 text-sm text-crema/75">{categoria.tituloCorto}</p>
+    <span
+      class="mt-3 inline-flex items-center gap-2 text-sm font-medium text-oro-claro opacity-0 transition-all duration-300 group-hover:opacity-100"
+    >
+      Ver categoría
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </span>
+  </div>
+</a>

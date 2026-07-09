@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { categorias, getCategoria } from '../../data/categories';
+import { productosPorCategoria } from '../../data/catalog';
+import { whatsappLink } from '../../data/site';
+
+export function getStaticPaths() {
+  return categorias.map((c) => ({ params: { categoria: c.slug } }));
+}
+
+const { categoria: slug } = Astro.params;
+const categoria = getCategoria(slug!);
+if (!categoria) {
+  return Astro.redirect('/catalogo');
+}
+const productos = productosPorCategoria(categoria.slug);
+const otras = categorias.filter((c) => c.slug !== categoria.slug);
+---
+
+<BaseLayout title={categoria.nombre} description={categoria.descripcion}>
+  <!-- Encabezado -->
+  <section class="relative overflow-hidden bg-espresso py-16 text-hueso md:py-20">
+    <div class="texture-slats absolute inset-0 opacity-20"></div>
+    <div class="container-max relative">
+      <nav class="mb-5 text-xs text-crema/60" aria-label="Ruta">
+        <a href="/catalogo" class="hover:text-oro-claro">Catálogo</a>
+        <span class="mx-2">/</span>
+        <span class="text-oro-claro">{categoria.nombre}</span>
+      </nav>
+      <p class="eyebrow mb-3">{categoria.tituloCorto}</p>
+      <h1 class="font-display text-4xl font-semibold sm:text-5xl">{categoria.nombre}</h1>
+      <p class="mt-4 max-w-2xl text-crema/75">{categoria.detalle}</p>
+    </div>
+  </section>
+
+  <!-- Productos -->
+  <section class="py-16 md:py-24">
+    <div class="container-max">
+      {
+        productos.length > 0 ? (
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {productos.map((p) => <ProductCard producto={p} />)}
+          </div>
+        ) : (
+          <div class="rounded-sm border border-carbon/10 bg-crema p-10 text-center">
+            <p class="text-carbon/70">
+              Pronto añadiremos productos a esta categoría. Mientras tanto,
+              escríbenos y con gusto te asesoramos.
+            </p>
+          </div>
+        )
+      }
+
+      <!-- CTA de categoría -->
+      <div class="mt-14 rounded-sm bg-crema p-8 text-center md:p-10">
+        <h2 class="font-display text-2xl font-semibold text-carbon sm:text-3xl">
+          ¿No ves exactamente lo que buscas?
+        </h2>
+        <p class="mx-auto mt-3 max-w-xl text-carbon/70">
+          Todo se fabrica a la medida. Cuéntanos tu idea y la hacemos realidad.
+        </p>
+        <a
+          href={whatsappLink(`Hola Madera Design, me interesa la categoría "${categoria.nombre}". Quisiera una cotización a la medida.`)}
+          target="_blank"
+          rel="noopener"
+          class="btn-primary mt-6"
+        >
+          Cotizar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Otras categorías -->
+  <section class="border-t border-carbon/10 py-14">
+    <div class="container-max">
+      <p class="eyebrow mb-6">Explora también</p>
+      <div class="flex flex-wrap gap-3">
+        {
+          otras.map((c) => (
+            <a
+              href={`/catalogo/${c.slug}`}
+              class="rounded-full border border-carbon/15 px-5 py-2 text-sm text-carbon/80 transition-colors hover:border-oro hover:text-oro"
+            >
+              {c.nombre}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

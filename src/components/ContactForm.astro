@@ -1,0 +1,160 @@
+---
+import { site } from '../data/site';
+import { categorias } from '../data/categories';
+---
+
+<form id="contact-form" class="space-y-5" novalidate>
+  <input type="hidden" name="access_key" value={site.web3formsKey} />
+  <input type="hidden" name="subject" value="Nueva solicitud desde la web de Madera Design" />
+  <!-- Honeypot anti-spam -->
+  <input type="checkbox" name="botcheck" tabindex="-1" class="hidden" aria-hidden="true" />
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="nombre" class="mb-1.5 block text-sm font-medium text-carbon">Nombre</label>
+      <input
+        id="nombre"
+        name="nombre"
+        type="text"
+        required
+        autocomplete="name"
+        class="w-full rounded-sm border border-carbon/15 bg-hueso px-4 py-3 text-carbon outline-none transition focus:border-oro"
+        placeholder="Tu nombre"
+      />
+    </div>
+    <div>
+      <label for="telefono" class="mb-1.5 block text-sm font-medium text-carbon">Teléfono / WhatsApp</label>
+      <input
+        id="telefono"
+        name="telefono"
+        type="tel"
+        required
+        autocomplete="tel"
+        class="w-full rounded-sm border border-carbon/15 bg-hueso px-4 py-3 text-carbon outline-none transition focus:border-oro"
+        placeholder="0414 000 0000"
+      />
+    </div>
+  </div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="email" class="mb-1.5 block text-sm font-medium text-carbon">Correo (opcional)</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        class="w-full rounded-sm border border-carbon/15 bg-hueso px-4 py-3 text-carbon outline-none transition focus:border-oro"
+        placeholder="tucorreo@ejemplo.com"
+      />
+    </div>
+    <div>
+      <label for="categoria" class="mb-1.5 block text-sm font-medium text-carbon">¿Qué te interesa?</label>
+      <select
+        id="categoria"
+        name="categoria"
+        class="w-full rounded-sm border border-carbon/15 bg-hueso px-4 py-3 text-carbon outline-none transition focus:border-oro"
+      >
+        <option value="">Selecciona una categoría</option>
+        {categorias.map((c) => <option value={c.nombre}>{c.nombre}</option>)}
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <label for="mensaje" class="mb-1.5 block text-sm font-medium text-carbon">Cuéntanos tu proyecto</label>
+    <textarea
+      id="mensaje"
+      name="mensaje"
+      rows="4"
+      required
+      class="w-full rounded-sm border border-carbon/15 bg-hueso px-4 py-3 text-carbon outline-none transition focus:border-oro"
+      placeholder="Describe el mueble, medidas aproximadas, espacio, referencias…"
+    ></textarea>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <button type="submit" class="btn-dark">Enviar solicitud</button>
+    <button type="button" id="send-whatsapp" class="btn-primary">Enviar por WhatsApp</button>
+  </div>
+
+  <p id="form-status" class="hidden text-sm" role="status" aria-live="polite"></p>
+</form>
+
+<script define:vars={{ whatsappNumber: site.web3formsKey ? site.whatsapp : site.whatsapp, hasKey: Boolean(site.web3formsKey), waNumber: site.whatsapp }}>
+  const form = document.getElementById('contact-form');
+  const statusEl = document.getElementById('form-status');
+  const waBtn = document.getElementById('send-whatsapp');
+
+  function showStatus(msg, ok) {
+    statusEl.textContent = msg;
+    statusEl.classList.remove('hidden');
+    statusEl.style.color = ok ? '#4A3524' : '#9b2c2c';
+  }
+
+  function fields() {
+    const d = new FormData(form);
+    return {
+      nombre: (d.get('nombre') || '').toString().trim(),
+      telefono: (d.get('telefono') || '').toString().trim(),
+      email: (d.get('email') || '').toString().trim(),
+      categoria: (d.get('categoria') || '').toString().trim(),
+      mensaje: (d.get('mensaje') || '').toString().trim(),
+    };
+  }
+
+  function buildWhatsApp() {
+    const f = fields();
+    const lineas = [
+      'Hola Madera Design, quisiera una cotización.',
+      f.nombre && `Nombre: ${f.nombre}`,
+      f.telefono && `Teléfono: ${f.telefono}`,
+      f.email && `Correo: ${f.email}`,
+      f.categoria && `Interés: ${f.categoria}`,
+      f.mensaje && `Proyecto: ${f.mensaje}`,
+    ].filter(Boolean);
+    return `https://wa.me/${waNumber}?text=${encodeURIComponent(lineas.join('\n'))}`;
+  }
+
+  waBtn?.addEventListener('click', () => {
+    const f = fields();
+    if (!f.nombre || !f.mensaje) {
+      showStatus('Completa al menos tu nombre y el mensaje.', false);
+      return;
+    }
+    window.open(buildWhatsApp(), '_blank', 'noopener');
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      showStatus('Revisa los campos obligatorios.', false);
+      form.reportValidity();
+      return;
+    }
+    // Sin clave de Web3Forms configurada → usamos WhatsApp como respaldo.
+    if (!hasKey) {
+      window.open(buildWhatsApp(), '_blank', 'noopener');
+      showStatus('Te llevamos a WhatsApp para completar el envío.', true);
+      return;
+    }
+    try {
+      showStatus('Enviando…', true);
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      const data = await res.json();
+      if (data.success) {
+        form.reset();
+        showStatus('¡Gracias! Recibimos tu solicitud y te contactaremos pronto.', true);
+      } else {
+        showStatus('No se pudo enviar. Intenta por WhatsApp.', false);
+      }
+    } catch {
+      showStatus('Ocurrió un error. Intenta por WhatsApp.', false);
+    }
+  });
+</script>
