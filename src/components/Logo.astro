@@ -1,54 +1,49 @@
 ---
-// Logo monograma M/D — recreación fiel a la marca (placeholder editable).
-// Reemplázalo por el archivo oficial en /public/images/logo.svg si lo prefieres.
+// Logo oficial de Madera Design (monograma M/D + wordmark).
+// mode 'mark'  -> monograma + texto (compacto, para el header)
+// mode 'full'  -> lockup completo en imagen (para el footer)
+// variant 'oro' | 'claro' (color del texto/tono)
+import { withBase } from '../lib/url';
+
 interface Props {
-  variant?: 'oro' | 'claro' | 'oscuro';
-  showWordmark?: boolean;
+  variant?: 'oro' | 'claro';
+  mode?: 'mark' | 'full';
   class?: string;
 }
-const { variant = 'oro', showWordmark = true, class: cls = '' } = Astro.props;
+const { variant = 'oro', mode = 'mark', class: cls = '' } = Astro.props;
 
-const tone =
-  variant === 'claro' ? '#FBF7F1' : variant === 'oscuro' ? '#2E211A' : '#B08D4F';
+const textColor = variant === 'claro' ? '#FBF7F1' : '#2E211A';
+const subColor = variant === 'claro' ? 'rgba(251,247,241,.65)' : 'rgba(46,33,26,.6)';
+const monograma = variant === 'claro' ? '/images/logo-monograma-claro.png' : '/images/logo-monograma.png';
 ---
 
-<span class={`inline-flex items-center gap-3 ${cls}`} aria-label="Madera Design">
-  <svg
-    width="40"
-    height="40"
-    viewBox="0 0 100 100"
-    role="img"
-    aria-hidden="true"
-    class="shrink-0"
-  >
-    <circle cx="50" cy="50" r="47" fill="none" stroke={tone} stroke-width="1.5" />
-    <text
-      x="50"
-      y="58"
-      text-anchor="middle"
-      font-family="Cormorant, Georgia, serif"
-      font-size="42"
-      font-weight="600"
-      fill={tone}
-      letter-spacing="1"
-    >M/D</text>
-  </svg>
-  {
-    showWordmark && (
+{
+  mode === 'full' ? (
+    <img
+      src={withBase(variant === 'claro' ? '/images/logo-claro.png' : '/images/logo.png')}
+      alt="Madera Design"
+      class={`h-auto w-auto ${cls}`}
+      width="200"
+      height="99"
+    />
+  ) : (
+    <span class={`inline-flex items-center gap-3 ${cls}`} aria-label="Madera Design">
+      <img
+        src={withBase(monograma)}
+        alt=""
+        aria-hidden="true"
+        class="h-11 w-auto shrink-0"
+        width="44"
+        height="44"
+      />
       <span class="flex flex-col leading-none">
-        <span
-          class="font-marca text-lg tracking-[0.18em]"
-          style={`color:${tone}`}
-        >
+        <span class="font-marca text-lg tracking-[0.16em]" style={`color:${textColor}`}>
           MADERA DESIGN
         </span>
-        <span
-          class="font-sans text-[0.6rem] tracking-[0.34em] opacity-70"
-          style={`color:${tone}`}
-        >
+        <span class="font-sans text-[0.6rem] tracking-[0.32em]" style={`color:${subColor}`}>
           MADERA Y ESTILO
         </span>
       </span>
-    )
-  }
-</span>
+    </span>
+  )
+}

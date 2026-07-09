@@ -2,6 +2,7 @@
 import Logo from './Logo.astro';
 import { site, whatsappLink } from '../data/site';
 import { categorias } from '../data/categories';
+import { withBase } from '../lib/url';
 
 const year = new Date().getFullYear();
 ---
@@ -10,7 +11,7 @@ const year = new Date().getFullYear();
   <div class="texture-slats absolute inset-x-0 top-0 h-1.5 opacity-40"></div>
   <div class="container-max grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
     <div>
-      <Logo variant="claro" />
+      <Logo variant="claro" mode="full" class="h-20" />
       <p class="mt-5 max-w-xs text-sm leading-relaxed text-crema/70">
         {site.descripcion}
       </p>
@@ -31,7 +32,7 @@ const year = new Date().getFullYear();
           categorias.map((c) => (
             <li>
               <a
-                href={`/catalogo/${c.slug}`}
+                href={withBase(`/catalogo/${c.slug}`)}
                 class="link-underline text-crema/80 hover:text-oro-claro"
               >
                 {c.nombre}
@@ -84,7 +85,7 @@ const year = new Date().getFullYear();
     <div
       class="container-max flex flex-col items-center justify-between gap-2 py-6 text-xs text-crema/50 sm:flex-row"
     >
-      <p>© {year} {site.nombre}. Todos los derechos reservados.</p>
+      <p>© {year} {site.razonSocial}. Todos los derechos reservados.</p>
       <p>{site.eslogan}</p>
     </div>
   </div>

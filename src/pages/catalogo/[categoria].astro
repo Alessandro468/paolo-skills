@@ -4,6 +4,7 @@ import ProductCard from '../../components/ProductCard.astro';
 import { categorias, getCategoria } from '../../data/categories';
 import { productosPorCategoria } from '../../data/catalog';
 import { whatsappLink } from '../../data/site';
+import { withBase } from '../../lib/url';
 
 export function getStaticPaths() {
   return categorias.map((c) => ({ params: { categoria: c.slug } }));
@@ -12,7 +13,7 @@ export function getStaticPaths() {
 const { categoria: slug } = Astro.params;
 const categoria = getCategoria(slug!);
 if (!categoria) {
-  return Astro.redirect('/catalogo');
+  return Astro.redirect(withBase('/catalogo'));
 }
 const productos = productosPorCategoria(categoria.slug);
 const otras = categorias.filter((c) => c.slug !== categoria.slug);
@@ -24,7 +25,7 @@ const otras = categorias.filter((c) => c.slug !== categoria.slug);
     <div class="texture-slats absolute inset-0 opacity-20"></div>
     <div class="container-max relative">
       <nav class="mb-5 text-xs text-crema/60" aria-label="Ruta">
-        <a href="/catalogo" class="hover:text-oro-claro">Catálogo</a>
+        <a href={withBase('/catalogo')} class="hover:text-oro-claro">Catálogo</a>
         <span class="mx-2">/</span>
         <span class="text-oro-claro">{categoria.nombre}</span>
       </nav>
@@ -80,7 +81,7 @@ const otras = categorias.filter((c) => c.slug !== categoria.slug);
         {
           otras.map((c) => (
             <a
-              href={`/catalogo/${c.slug}`}
+              href={withBase(`/catalogo/${c.slug}`)}
               class="rounded-full border border-carbon/15 px-5 py-2 text-sm text-carbon/80 transition-colors hover:border-oro hover:text-oro"
             >
               {c.nombre}

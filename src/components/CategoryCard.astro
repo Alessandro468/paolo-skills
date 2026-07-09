@@ -1,6 +1,7 @@
 ---
 import PlaceholderImage from './PlaceholderImage.astro';
 import type { Categoria } from '../data/categories';
+import { withBase } from '../lib/url';
 
 interface Props {
   categoria: Categoria;
@@ -11,7 +12,7 @@ const num = String(index + 1).padStart(2, '0');
 ---
 
 <a
-  href={`/catalogo/${categoria.slug}`}
+  href={withBase(`/catalogo/${categoria.slug}`)}
   class="group relative block overflow-hidden rounded-sm bg-carbon shadow-card"
 >
   <PlaceholderImage

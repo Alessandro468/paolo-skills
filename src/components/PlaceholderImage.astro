@@ -2,6 +2,8 @@
 // Imagen de producto/categoría. Si `src` está vacío, muestra un placeholder
 // con textura de listones de madera + etiqueta, para que el layout se vea
 // completo sin fotos reales.
+import { withBase } from '../lib/url';
+
 interface Props {
   src?: string;
   alt: string;
@@ -15,7 +17,7 @@ const { src, alt, label, ratio = '4 / 3', class: cls = '' } = Astro.props;
 {
   src ? (
     <img
-      src={src}
+      src={withBase(src)}
       alt={alt}
       loading="lazy"
       decoding="async"

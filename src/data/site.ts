@@ -20,8 +20,9 @@ export const site = {
     { numero: '584143038227', etiqueta: '+58 414 303 8227' },
   ],
 
-  // TODO: datos reales de contacto (aún placeholders)
-  email: 'contacto@mueblesmaderadesign.com',
+  email: 'maderadesignve@gmail.com',
+  razonSocial: 'Madera Design VE, C.A.',
+  // TODO: teléfono/ciudad/dirección/horario reales (aún placeholders)
   telefono: '+58 412 551 5196',
   ciudad: 'Venezuela',
   direccion: 'Añade aquí tu dirección o showroom',

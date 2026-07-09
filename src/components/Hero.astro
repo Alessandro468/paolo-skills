@@ -1,5 +1,6 @@
 ---
 import { whatsappLink } from '../data/site';
+import { withBase } from '../lib/url';
 ---
 
 <section class="relative overflow-hidden bg-espresso text-hueso">
@@ -32,7 +33,7 @@ import { whatsappLink } from '../data/site';
         >
           Cotizar mi proyecto
         </a>
-        <a href="/catalogo" class="btn-outline text-hueso">Ver catálogo</a>
+        <a href={withBase('/catalogo')} class="btn-outline text-hueso">Ver catálogo</a>
       </div>
 
       <!-- Prueba social -->
@@ -56,19 +57,19 @@ import { whatsappLink } from '../data/site';
     <div class="relative hidden md:block">
       <div class="grid grid-cols-5 grid-rows-6 gap-4">
         <img
-          src="/images/productos/mueble-tv-led.jpg"
+          src={withBase('/images/productos/mueble-tv-led.jpg')}
           alt="Mueble de TV con paneles y luz LED fabricado por Madera Design"
           loading="eager"
           class="col-span-3 row-span-4 h-full w-full rounded-sm border border-oro/20 object-cover shadow-card"
         />
         <img
-          src="/images/productos/vestier-1.jpg"
+          src={withBase('/images/productos/vestier-1.jpg')}
           alt="Vestier a la medida con iluminación LED"
           loading="eager"
           class="col-span-2 col-start-4 row-span-6 h-full w-full rounded-sm border border-oro/20 object-cover shadow-card"
         />
         <img
-          src="/images/productos/bar-cava.jpg"
+          src={withBase('/images/productos/bar-cava.jpg')}
           alt="Bar y cava a la medida"
           loading="eager"
           class="col-span-3 row-span-2 row-start-5 h-full w-full rounded-sm border border-oro/20 object-cover shadow-card"

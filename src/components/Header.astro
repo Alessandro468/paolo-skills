@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { site, whatsappLink } from '../data/site';
+import { withBase, stripBase } from '../lib/url';
 
 const nav = [
   { href: '/', label: 'Inicio' },
@@ -9,7 +10,7 @@ const nav = [
   { href: '/contacto', label: 'Contacto' },
 ];
 
-const path = Astro.url.pathname;
+const path = stripBase(Astro.url.pathname);
 const isActive = (href: string) =>
   href === '/' ? path === '/' : path.startsWith(href);
 ---
@@ -19,7 +20,7 @@ const isActive = (href: string) =>
   class="sticky top-0 z-40 border-b border-oro/15 bg-hueso/85 backdrop-blur-md transition-shadow"
 >
   <div class="container-max flex h-20 items-center justify-between">
-    <a href="/" class="shrink-0" aria-label="Ir al inicio — Madera Design">
+    <a href={withBase('/')} class="shrink-0" aria-label="Ir al inicio — Madera Design">
       <Logo variant="oro" />
     </a>
 
@@ -29,7 +30,7 @@ const isActive = (href: string) =>
           nav.map((item) => (
             <li>
               <a
-                href={item.href}
+                href={withBase(item.href)}
                 class:list={[
                   'link-underline font-sans text-sm tracking-wide transition-colors',
                   isActive(item.href)
@@ -82,7 +83,7 @@ const isActive = (href: string) =>
           nav.map((item) => (
             <li>
               <a
-                href={item.href}
+                href={withBase(item.href)}
                 class:list={[
                   'block py-3 font-sans text-base',
                   isActive(item.href) ? 'text-oro' : 'text-carbon',

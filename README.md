@@ -90,16 +90,22 @@ Páginas: Inicio · Catálogo · Categoría (`/catalogo/<slug>`) · Nosotros · 
 
 ## Desplegar (publicar en internet)
 
-El sitio es estático (`npm run build` → carpeta `dist/`). Opciones gratuitas:
+Este repo ya trae un flujo de **GitHub Pages** automático
+(`.github/workflows/deploy.yml`): en cada push a la rama del sitio, construye y
+publica solo. URL: **https://alessandro468.github.io/paolo-skills/**
 
-- **Netlify** o **Vercel**: conecta el repositorio; build `npm run build`, carpeta
-  de salida `dist`. (En Netlify también puedes usar *Netlify Forms* como
-  alternativa al formulario.)
-- **GitHub Pages**: publica el contenido de `dist/`. Si el sitio no queda en la
-  raíz del dominio, ajusta `site`/`base` en `astro.config.mjs`.
+Pasos que debes hacer una sola vez en GitHub:
+1. **Settings → General → Danger Zone → Change visibility → Public**
+   (GitHub Pages gratis requiere repo público).
+2. **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. Espera a que termine la acción en la pestaña **Actions**; la URL aparece ahí.
 
-Recuerda actualizar `site` en `astro.config.mjs` con tu dominio final para que el
-`sitemap` y las URLs canónicas sean correctas.
+Como el sitio vive en una subruta (`/paolo-skills/`), en `astro.config.mjs` están
+`site` y `base` configurados. Si algún día usas un **dominio propio**, cambia
+`site` a tu dominio y `base` a `'/'`.
+
+> Alternativa con dominio propio y repo privado: **Netlify** o **Vercel**
+> (conectar el repo, build `npm run build`, salida `dist`). Avísame y lo preparo.
 
 ---
 
