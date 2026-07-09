@@ -75,18 +75,21 @@ export const productos: Producto[] = [
 
   // --- Cocinas ---
   {
-    id: 'cocina-integral-mate',
-    nombre: 'Cocina integral mate',
-    categoria: 'cocinas',
-    descripcion: 'Cocina en línea con gabinetes mate, tope resistente y organización interna.',
-    material: 'Materiales importados',
-  },
-  {
     id: 'cocina-isla',
     nombre: 'Cocina con isla',
     categoria: 'cocinas',
-    descripcion: 'Distribución con isla central, almacenamiento amplio y zona de desayuno.',
-    material: 'Madera y superficies premium',
+    descripcion: 'Cocina en U con gran isla en superficie tipo mármol, torre de hornos y amplios módulos en madera.',
+    material: 'Superficie tipo mármol y madera',
+    imagen: '/images/productos/cocina-2.jpg',
+    destacado: true,
+  },
+  {
+    id: 'cocina-integral-mate',
+    nombre: 'Cocina en L',
+    categoria: 'cocinas',
+    descripcion: 'Cocina en L con tope claro, cocina a gas empotrada, fregadero doble y gabinetes en madera con líneas negras.',
+    material: 'Materiales importados',
+    imagen: '/images/productos/cocina-1.jpg',
   },
 
   // --- Closets y Vestiers ---

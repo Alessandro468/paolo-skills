@@ -42,7 +42,7 @@ export const categorias: Categoria[] = [
       'Cocinas integrales con materiales importados, herrajes de calidad y una distribución pensada para tu día a día.',
     detalle:
       'Optimizamos cada centímetro con módulos a la medida, superficies resistentes y acabados que elevan el corazón del hogar.',
-    imagen: '',
+    imagen: '/images/productos/cocina-1.jpg',
   },
   {
     slug: 'closets-y-vestiers',

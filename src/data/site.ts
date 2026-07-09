@@ -24,9 +24,9 @@ export const site = {
   razonSocial: 'Madera Design VE, C.A.',
   // TODO: teléfono/ciudad/dirección/horario reales (aún placeholders)
   telefono: '+58 412 551 5196',
-  ciudad: 'Venezuela',
-  direccion: 'Añade aquí tu dirección o showroom',
-  horario: 'Lun a Vie: 9:00 a.m. – 6:00 p.m. · Sáb: 9:00 a.m. – 1:00 p.m.',
+  ciudad: 'Caracas, Venezuela',
+  direccion: 'Piedra Azul, municipio Baruta, Caracas',
+  horario: 'Lunes a viernes: 8:00 a.m. – 5:00 p.m.',
 
   // Enlaces
   instagram: 'https://www.instagram.com/maderadesignve',
