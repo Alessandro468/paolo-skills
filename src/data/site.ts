@@ -9,13 +9,20 @@ export const site = {
   descripcion:
     'Fabricamos muebles a la medida con diseños exclusivos y materiales importados. Muebles, centros de TV, cocinas, closets y vestiers.',
 
-  // TODO: número real en formato internacional SIN "+", espacios ni guiones.
-  // Ejemplo Venezuela: 58 + código de área + número => 584141234567
-  whatsapp: '584140000000',
+  // Números de WhatsApp en formato internacional SIN "+", espacios ni guiones.
+  // `whatsapp` es el principal (lo usa el botón flotante y los CTA).
+  whatsapp: '584125515196',
+  whatsappAlt: '584143038227',
 
-  // TODO: datos reales de contacto
+  // Ambos números para mostrar en Contacto y pie de página.
+  whatsapps: [
+    { numero: '584125515196', etiqueta: '+58 412 551 5196' },
+    { numero: '584143038227', etiqueta: '+58 414 303 8227' },
+  ],
+
+  // TODO: datos reales de contacto (aún placeholders)
   email: 'contacto@mueblesmaderadesign.com',
-  telefono: '+58 414 000 0000',
+  telefono: '+58 412 551 5196',
   ciudad: 'Venezuela',
   direccion: 'Añade aquí tu dirección o showroom',
   horario: 'Lun a Vie: 9:00 a.m. – 6:00 p.m. · Sáb: 9:00 a.m. – 1:00 p.m.',

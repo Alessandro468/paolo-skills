@@ -33,11 +33,13 @@ npm run preview    # previsualiza el build de producción
 Casi todo se configura editando archivos de datos, sin tocar el diseño.
 
 ### 1. Datos del negocio y WhatsApp — `src/data/site.ts`
-- **`whatsapp`**: tu número real en formato internacional, sin `+`, espacios ni
-  guiones. Ej. Venezuela: `584141234567`.
-- `email`, `telefono`, `ciudad`, `direccion`, `horario`.
+- **`whatsapp`**: número principal (lo usa el botón flotante y los CTA). Formato
+  internacional, sin `+`, espacios ni guiones. Ej. Venezuela: `584141234567`.
+- **`whatsapps`**: lista de números que se muestran en Contacto y el pie de
+  página. Ya están cargados los dos números reales; edítalos aquí si cambian.
+- `email`, `telefono`, `ciudad`, `direccion`, `horario` (correo/dirección/horario
+  siguen siendo placeholders — actualízalos).
 - `instagram`, `webActual`.
-- **`web3formsKey`**: clave del formulario de contacto (ver punto 4).
 
 ### 2. Categorías — `src/data/categories.ts`
 Textos y la foto de portada de cada categoría (campo `imagen`).
@@ -48,12 +50,12 @@ la foto en `imagen`. El campo `categoria` debe coincidir con el `slug` de una
 categoría. Marca `destacado: true` para mostrarlo en la portada.
 
 ### 4. Formulario de contacto
-El formulario usa **[Web3Forms](https://web3forms.com)** (gratis):
-1. Crea una clave de acceso (Access Key) gratuita en su web.
-2. Pégala en `web3formsKey` dentro de `src/data/site.ts`.
+El formulario **envía por WhatsApp**: al completar y enviar, abre WhatsApp (número
+principal) con los datos ya escritos en el mensaje. No requiere ningún servicio
+externo ni correo.
 
-Mientras esa clave esté vacía, el botón de envío **redirige a WhatsApp** con los
-datos del formulario, así que funciona igual desde el primer día.
+> ¿Quieres que además llegue por correo? Se puede conectar a
+> [Web3Forms](https://web3forms.com) o Netlify Forms más adelante; pídelo y se activa.
 
 ### 5. Imágenes y logo
 - Coloca las fotos en `public/images/` (ver `public/images/README.md` para la
@@ -102,8 +104,9 @@ Recuerda actualizar `site` en `astro.config.mjs` con tu dominio final para que e
 ---
 
 ## Pendientes para dejarlo 100 % real
-- [ ] Número de WhatsApp, correo, dirección y horario reales (`src/data/site.ts`).
-- [ ] Fotos de productos y de portada por categoría (`public/images/`).
-- [ ] Logo oficial (opcional; ya hay una recreación fiel).
-- [ ] Clave de Web3Forms para el formulario.
-- [ ] Imagen para compartir en redes: `public/images/og-default.jpg` (1200×630).
+- [x] Números de WhatsApp reales (dos) — `src/data/site.ts`.
+- [x] Fotos reales de Muebles, Muebles TV y Closets/Vestiers + imagen para redes.
+- [ ] **Fotos de Cocinas** (única categoría que sigue con placeholder).
+- [ ] Correo, dirección/showroom y horario reales (`src/data/site.ts`).
+- [ ] Logo oficial en alta resolución (opcional; ya hay una recreación fiel en SVG).
+- [ ] Más productos por categoría, si quieres ampliar el catálogo (`src/data/catalog.ts`).

@@ -45,6 +45,20 @@ const year = new Date().getFullYear();
     <div>
       <h3 class="eyebrow mb-4">Contacto</h3>
       <ul class="space-y-2.5 text-sm text-crema/80">
+        {
+          site.whatsapps.map((w) => (
+            <li>
+              <a
+                href={`https://wa.me/${w.numero}?text=${encodeURIComponent('Hola Madera Design, quisiera una cotización.')}`}
+                target="_blank"
+                rel="noopener"
+                class="link-underline hover:text-oro-claro"
+              >
+                WhatsApp {w.etiqueta}
+              </a>
+            </li>
+          ))
+        }
         <li>{site.horario}</li>
         <li>{site.direccion}</li>
         <li>

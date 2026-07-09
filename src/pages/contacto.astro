@@ -1,15 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { site, whatsappLink } from '../data/site';
+import { site } from '../data/site';
 
+const msg = 'Hola Madera Design, quisiera una cotización.';
 const datos = [
-  {
+  ...site.whatsapps.map((w) => ({
     label: 'WhatsApp',
-    valor: 'Escríbenos directo',
-    href: whatsappLink('Hola Madera Design, quisiera una cotización.'),
+    valor: w.etiqueta,
+    href: `https://wa.me/${w.numero}?text=${encodeURIComponent(msg)}`,
     icon: 'M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Z',
-  },
+  })),
   {
     label: 'Correo',
     valor: site.email,

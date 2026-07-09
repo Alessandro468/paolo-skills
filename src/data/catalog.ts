@@ -18,12 +18,20 @@ export interface Producto {
 export const productos: Producto[] = [
   // --- Muebles ---
   {
+    id: 'bar-cava',
+    nombre: 'Bar y cava',
+    categoria: 'muebles',
+    descripcion: 'Bar con vinoteca, estantería para copas y licores, iluminación LED y zona de nevera.',
+    material: 'Madera con iluminación LED',
+    imagen: '/images/productos/bar-cava.jpg',
+    destacado: true,
+  },
+  {
     id: 'mueble-sala-nordic',
     nombre: 'Mueble de sala Nórdico',
     categoria: 'muebles',
     descripcion: 'Mueble bajo de sala con repisas abiertas y acabado en nogal.',
     material: 'Madera con acabado nogal',
-    destacado: true,
   },
   {
     id: 'escritorio-atelier',
@@ -43,10 +51,11 @@ export const productos: Producto[] = [
   // --- Muebles TV ---
   {
     id: 'panel-tv-ranurado',
-    nombre: 'Panel TV ranurado',
+    nombre: 'Panel TV con LED',
     categoria: 'muebles-tv',
-    descripcion: 'Panel de listones de madera con TV integrado e iluminación posterior.',
-    material: 'Listones de madera + LED',
+    descripcion: 'Panel geométrico con líneas de luz LED, TV integrado y mueble bajo flotante iluminado.',
+    material: 'Paneles con iluminación LED',
+    imagen: '/images/productos/mueble-tv-led.jpg',
     destacado: true,
   },
   {
@@ -71,7 +80,6 @@ export const productos: Producto[] = [
     categoria: 'cocinas',
     descripcion: 'Cocina en línea con gabinetes mate, tope resistente y organización interna.',
     material: 'Materiales importados',
-    destacado: true,
   },
   {
     id: 'cocina-isla',
@@ -86,23 +94,26 @@ export const productos: Producto[] = [
     id: 'vestier-boutique',
     nombre: 'Vestier boutique',
     categoria: 'closets-y-vestiers',
-    descripcion: 'Vestier tipo boutique con módulos abiertos, espejo y luz ambiental.',
+    descripcion: 'Vestier tipo boutique con módulos abiertos, cajoneras, barras y luz LED en cada nivel.',
     material: 'Madera con iluminación LED',
+    imagen: '/images/productos/vestier-1.jpg',
     destacado: true,
   },
   {
     id: 'closet-corredera',
-    nombre: 'Closet puertas corredera',
+    nombre: 'Vestier en U iluminado',
     categoria: 'closets-y-vestiers',
-    descripcion: 'Closet con puertas corredera, cajoneras y organización a la medida.',
+    descripcion: 'Vestier en U con repisas, cajoneras y barras, iluminado con tiras LED cálidas.',
     material: 'Madera y herrajes importados',
+    imagen: '/images/productos/vestier-2.jpg',
   },
   {
     id: 'vestier-espejo',
-    nombre: 'Vestier con espejo',
+    nombre: 'Vestier con isla y LED',
     categoria: 'closets-y-vestiers',
-    descripcion: 'Espejo iluminado, repisas para calzado y cajones forrados.',
-    material: 'Madera, espejo y LED',
+    descripcion: 'Amplio vestier con módulos abiertos, zapatera iluminada y barras a la medida.',
+    material: 'Madera con iluminación LED',
+    imagen: '/images/productos/vestier-3.jpg',
   },
 ];
 

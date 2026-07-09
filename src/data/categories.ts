@@ -22,7 +22,7 @@ export const categorias: Categoria[] = [
       'Piezas de mobiliario diseñadas para tu espacio: mesas, repisas, escritorios y muebles de sala con acabados en madera.',
     detalle:
       'Cada mueble se proyecta a la medida de tu ambiente, combinando funcionalidad y una estética cálida y atemporal.',
-    imagen: '',
+    imagen: '/images/productos/bar-cava.jpg',
   },
   {
     slug: 'muebles-tv',
@@ -32,7 +32,7 @@ export const categorias: Categoria[] = [
       'Centros de entretenimiento y paneles ranurados que integran tu televisor, iluminación LED y almacenamiento en una sola pieza.',
     detalle:
       'Diseños que ordenan el área social con paneles de madera, vitrinas iluminadas y espacios ocultos para cables y equipos.',
-    imagen: '',
+    imagen: '/images/productos/mueble-tv-led.jpg',
   },
   {
     slug: 'cocinas',
@@ -52,7 +52,7 @@ export const categorias: Categoria[] = [
       'Closets y vestiers exclusivos con iluminación, espejos y organización a la medida para vestir con orden y elegancia.',
     detalle:
       'Desde closets funcionales hasta vestiers tipo boutique con luz ambiental, cajoneras y módulos abiertos a tu medida.',
-    imagen: '',
+    imagen: '/images/productos/vestier-1.jpg',
   },
 ];
 
