@@ -22,7 +22,7 @@ export const categorias: Categoria[] = [
       'Piezas de mobiliario diseñadas para tu espacio: mesas, repisas, escritorios y muebles de sala con acabados en madera.',
     detalle:
       'Cada mueble se proyecta a la medida de tu ambiente, combinando funcionalidad y una estética cálida y atemporal.',
-    imagen: '/images/productos/bar-cava.jpg',
+    imagen: '',
   },
   {
     slug: 'muebles-tv',
@@ -53,6 +53,16 @@ export const categorias: Categoria[] = [
     detalle:
       'Desde closets funcionales hasta vestiers tipo boutique con luz ambiental, cajoneras y módulos abiertos a tu medida.',
     imagen: '/images/productos/vestier-1.jpg',
+  },
+  {
+    slug: 'bars',
+    nombre: 'Bars',
+    tituloCorto: 'Bares y cavas',
+    descripcion:
+      'Bares y cavas a la medida con vinoteca, estantería para copas y licores, iluminación LED y zona de nevera.',
+    detalle:
+      'Diseñamos tu bar o cava integrado al área social: vinoteca, repisas iluminadas para copas y botellas, y espacio para nevera, con acabados elegantes en madera.',
+    imagen: '/images/productos/bar-cava.jpg',
   },
 ];
 

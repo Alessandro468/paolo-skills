@@ -20,7 +20,7 @@ export const productos: Producto[] = [
   {
     id: 'bar-cava',
     nombre: 'Bar y cava',
-    categoria: 'muebles',
+    categoria: 'bars',
     descripcion: 'Bar con vinoteca, estantería para copas y licores, iluminación LED y zona de nevera.',
     material: 'Madera con iluminación LED',
     imagen: '/images/productos/bar-cava.jpg',
