@@ -59,18 +59,20 @@ export const productos: Producto[] = [
     destacado: true,
   },
   {
-    id: 'centro-entretenimiento-vitrina',
-    nombre: 'Centro con vitrinas',
+    id: 'centro-biblioteca-curva',
+    nombre: 'Centro de TV con biblioteca curva',
     categoria: 'muebles-tv',
-    descripcion: 'Centro de TV con vitrinas laterales iluminadas y almacenamiento inferior.',
-    material: 'Madera y vidrio',
+    descripcion: 'Panel de mármol iluminado con TV, consola flotante y biblioteca curva en madera con luz LED.',
+    material: 'Mármol, madera y LED',
+    imagen: '/images/productos/mueble-tv-2.jpg',
   },
   {
-    id: 'mueble-tv-flotante',
-    nombre: 'Mueble TV flotante',
+    id: 'centro-entretenimiento-vitrina',
+    nombre: 'Panel ranurado con vitrina',
     categoria: 'muebles-tv',
-    descripcion: 'Módulo suspendido con cajones push-open y luz inferior.',
-    material: 'Madera con herrajes push-open',
+    descripcion: 'Panel de listones de madera con TV, consola flotante de gavetas y vitrina lateral iluminada.',
+    material: 'Listones de madera con LED',
+    imagen: '/images/productos/mueble-tv-3.jpg',
   },
 
   // --- Cocinas ---
